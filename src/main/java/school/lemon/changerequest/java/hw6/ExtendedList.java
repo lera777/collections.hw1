@@ -9,6 +9,7 @@ public interface ExtendedList<E> extends List<E> {
      *
      * @param filter object to use in iterator
      * @return an iterator over the elements in this list sequence, based on given filter object
+     * @throws IllegalArgumentException if filter is null
      */
-    ConditionalIterator<E> conditionalIterator(Filter<E> filter);
+    ConditionalIterator<E> conditionalIterator(Filter<E> filter) throws IllegalArgumentException;
 }

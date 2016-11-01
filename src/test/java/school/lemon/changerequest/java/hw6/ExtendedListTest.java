@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static org.junit.Assert.fail;
+
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ExtendedListTest.GuavaTests.class, ExtendedListTest.ConditionalIteratorTests.class})
 public class ExtendedListTest {
@@ -29,6 +31,12 @@ public class ExtendedListTest {
     }
 
     public static class ConditionalIteratorTests {
+        @Test(expected = IllegalArgumentException.class)
+        public void testConditionalIteratorThrowsIllegalArgumentException() {
+            ExtendedListFactory.create().conditionalIterator(null);
+            fail("Expected IllegalArgumentException");
+        }
+
         @Test(expected = NoSuchElementException.class)
         public void testConditionalIteratorOfEmptyCollection() {
             ExtendedList<Object> extendedList = ExtendedListFactory.create();
@@ -37,6 +45,7 @@ public class ExtendedListTest {
             Assert.assertEquals(nonNullFilter, conditionalIterator.filter());
             Assert.assertFalse(conditionalIterator.hasNext());
             conditionalIterator.next();
+            fail("Expected NoSuchElementException");
         }
 
         @Test
