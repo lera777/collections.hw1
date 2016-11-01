@@ -19,6 +19,10 @@ import java.util.NoSuchElementException;
 @Suite.SuiteClasses({ExtendedListTest.GuavaTests.class, ExtendedListTest.ConditionalIteratorTests.class})
 public class ExtendedListTest {
 
+    public static <T> Filter<T> nonNull() {
+        return element -> element != null;
+    }
+
     public static class ConditionalIteratorTests {
         @Test(expected = NoSuchElementException.class)
         public void testConditionalIteratorOfEmptyCollection() {
@@ -95,9 +99,5 @@ public class ExtendedListTest {
                     CollectionSize.ANY
             ).createTestSuite();
         }
-    }
-
-    public static <T> Filter<T> nonNull() {
-        return element -> element != null;
     }
 }

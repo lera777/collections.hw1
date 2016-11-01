@@ -1,7 +1,6 @@
 package school.lemon.changerequest.java.hw6;
 
 
-import java.util.Comparator;
 import java.util.List;
 
 public interface ExtendedList<E> extends List<E> {

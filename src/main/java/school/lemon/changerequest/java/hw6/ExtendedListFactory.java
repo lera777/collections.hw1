@@ -7,6 +7,7 @@ public final class ExtendedListFactory {
 
     /**
      * Creates ExtendedList instance
+     *
      * @param <E> the type of elements in list
      * @return instance of ExtendedList
      */
