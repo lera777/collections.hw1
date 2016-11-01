@@ -20,7 +20,12 @@ import java.util.NoSuchElementException;
 public class ExtendedListTest {
 
     public static <T> Filter<T> nonNull() {
-        return element -> element != null;
+        return new Filter<T>() {
+            @Override
+            public boolean match(T element) {
+                return element != null;
+            }
+        };
     }
 
     public static class ConditionalIteratorTests {
