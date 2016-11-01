@@ -1,4 +1,4 @@
-Home work 3 tasks.
+Home work 6 tasks.
 ===============
 1\. List implementation
 ---------------
