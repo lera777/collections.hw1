@@ -1,4 +1,4 @@
-package school.lemon.changerequest.java.hw6;
+package school.lemon.changerequest.java.collections.hw1;
 
 
 import java.util.List;
