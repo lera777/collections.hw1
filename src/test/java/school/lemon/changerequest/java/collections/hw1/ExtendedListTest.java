@@ -6,8 +6,11 @@ import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.ListFeature;
 import junit.framework.TestSuite;
+import org.hamcrest.core.IsNull;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -17,7 +20,7 @@ import java.util.NoSuchElementException;
 
 import static org.junit.Assert.fail;
 
-@RunWith(Suite.class)
+@RunWith(Enclosed.class)
 @Suite.SuiteClasses({ExtendedListTest.GuavaTests.class, ExtendedListTest.ConditionalIteratorTests.class})
 public class ExtendedListTest {
 
@@ -33,13 +36,16 @@ public class ExtendedListTest {
     public static class ConditionalIteratorTests {
         @Test(expected = IllegalArgumentException.class)
         public void testConditionalIteratorThrowsIllegalArgumentException() {
-            ExtendedListFactory.create().conditionalIterator(null);
+            ExtendedList<Object> objects = ExtendedListFactory.create();
+            Assume.assumeThat(objects, IsNull.notNullValue());
+            objects.conditionalIterator(null);
             fail("Expected IllegalArgumentException");
         }
 
         @Test(expected = NoSuchElementException.class)
         public void testConditionalIteratorOfEmptyCollection() {
             ExtendedList<Object> extendedList = ExtendedListFactory.create();
+            Assume.assumeThat(extendedList, IsNull.notNullValue());
             Filter<Object> nonNullFilter = nonNull();
             ConditionalIterator<Object> conditionalIterator = extendedList.conditionalIterator(nonNullFilter);
             Assert.assertEquals(nonNullFilter, conditionalIterator.filter());
@@ -51,6 +57,7 @@ public class ExtendedListTest {
         @Test
         public void testConditionalIteratorWithNoValidElementsInCollection() {
             ExtendedList<Integer> integers = ExtendedListFactory.create();
+            Assume.assumeThat(integers, IsNull.notNullValue());
             integers.add(1);
             integers.add(2);
             integers.add(3);
@@ -66,6 +73,7 @@ public class ExtendedListTest {
         @Test
         public void testConditionalIteratorWithValidElementsInCollection() {
             ExtendedList<String> strings = ExtendedListFactory.create();
+            Assume.assumeThat(strings, IsNull.notNullValue());
             strings.add("1234567890");
             strings.add("123456789");
             strings.add("12345678");
