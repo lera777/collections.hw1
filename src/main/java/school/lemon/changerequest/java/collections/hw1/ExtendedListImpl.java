@@ -62,7 +62,7 @@ public class ExtendedListImpl<E> implements ExtendedList {
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new Itr<E>();
     }
 
     @Override
@@ -205,10 +205,6 @@ public class ExtendedListImpl<E> implements ExtendedList {
         public E next() {
             return (E) array[cursor++];
         }
-    }
-
-    public Iterator createIterator() {
-        return new Itr<>();
     }
 
     @Override
