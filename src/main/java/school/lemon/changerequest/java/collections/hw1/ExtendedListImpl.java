@@ -15,7 +15,6 @@ public class ExtendedListImpl<E> implements ExtendedList {
 
     private void checkSize() {
         if (size == array.length) {
-
             E[] newArray = (E[]) new Object[array.length * 2];
             System.arraycopy(array, 0, newArray, 0, array.length);
             array = newArray;
@@ -170,7 +169,6 @@ public class ExtendedListImpl<E> implements ExtendedList {
     public int indexOf(Object o) {
         for (int i = 0; i < size; i++) {
             if (o.equals(array[i])) return i;
-
         }
         return -1;
     }
@@ -282,7 +280,6 @@ public class ExtendedListImpl<E> implements ExtendedList {
             arrayInString.append(array[i] + " ");
         }
         return arrayInString + " size = " + size + ";";
-
     }
 
 //    public static void main(String[] args) {
